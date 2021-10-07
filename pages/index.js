@@ -7,6 +7,15 @@ import React from 'react'
 
 
 export default function Home(products) {
+
+
+    React.useEffect(() => {
+
+        console.log(process.env.ENVIRONMENT)
+
+    }, [])
+
+
     return (
         <div className={
             styles.container
