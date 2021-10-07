@@ -8,13 +8,21 @@ import React from 'react'
 
 export default function Home(products) {
 
+    const getEnvironmentValue = (value) => {
+        return process.env.ENVIRONMENT == "development" ? process.env.DEV_STRAPI.concat(value) : process.env.PROD_STRAPI.concat(value)
+    }
 
     React.useEffect(() => {
 
         console.log(process.env.ENVIRONMENT)
+        console.log(getEnvironmentValue('products'))
+        console.log(getEnvironmentValue('uploads/pexels_cottonbro_4065906_548b19917c.jpg'))
 
     }, [])
 
+
+
+  
 
     return (
         <div className={
@@ -43,7 +51,7 @@ export default function Home(products) {
                 <section className={
                     styles.imageSection
                 }>
-                    <img src={process.env.ENVIRONMENT === 'development' ? process.env.DEV_STRAPI.concat('uploads/pexels_cottonbro_4065906_548b19917c.jpg') : process.env.PROD_STRAPI.concat('uploads/pexels_cottonbro_4065906_548b19917c.jpg')} width="100%" alt="Devices, Home Background images, Cristian Hoza, ZedPhone, ZedBook Pro"></img>
+                    <img src={getEnvironmentValue('uploads/pexels_cottonbro_4065906_548b19917c.jpg')} width="100%" alt="Devices, Home Background images, Cristian Hoza, ZedPhone, ZedBook Pro"></img>
                     <h2>Zapple. Best Tech Ever.</h2>
                     <h6>Check our products down below!</h6>
                 </section>
@@ -59,7 +67,9 @@ export default function Home(products) {
 
 export const getStaticProps = async () => {
 
-    const data = (await axios.get(process.env.ENVIRONMENT === 'development' ? process.env.DEV_STRAPI.concat('products') : process.env.PROD_STRAPI.concat('products') )).data
+
+
+    const data = (await axios.get(process.env.ENVIRONMENT == "development" ? process.env.DEV_STRAPI.concat('products') : process.env.PROD_STRAPI.concat('products'))).data
 
     return {props: {
             data
