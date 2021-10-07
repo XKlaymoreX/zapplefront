@@ -1,0 +1,15 @@
+.footer{
+    width: 100%;
+    height: auto;
+    max-width: 1800px;
+    background-color: rgb(46, 102, 186);
+    color: white;
+}
+
+
+.myNavbar{
+    padding: 20px;
+    border-bottom: 1px solid #ccc;
+}
+
+
